@@ -1,0 +1,19 @@
+name: call_args
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Change if you need git info
+
+      - name: Setup Zig
+        uses: mlugg/setup-zig@v1
+        with:
+          version: 0.14.1
+
+      - name: Test
+        run: |
+          zig test cases/call_args/call_args_fail.zig
